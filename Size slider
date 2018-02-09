@@ -1,0 +1,72 @@
+from tkinter import *
+master = Tk()
+
+w = Canvas(master, width=600, height=600,)
+w.pack()
+x = Canvas(master, width=462, height=402,)
+x.pack()
+x.place(x=122,y=72)
+
+
+def calleasy():
+    global level
+    level=0
+    master.destroy()
+def callmedium():
+    global level
+    level=1
+    master.destroy()
+def callhard():
+    global level
+    level=2
+    master.destroy()
+
+color_rectangle = w.create_rectangle(0, 350, 100, 590)
+w.itemconfigure(color_rectangle, fill='white')
+
+shape_rectangle = w.create_rectangle(120, 500, 590, 590)
+w.itemconfigure(shape_rectangle, fill='white')
+
+canvas_rectangle = w.create_rectangle(120, 70, 590, 480)
+w.itemconfigure(canvas_rectangle, fill='white')
+
+size_rectangle = w.create_rectangle(0, 70, 100, 330)
+w.itemconfigure(size_rectangle, fill='white')
+
+
+label = Label(master, text='SIZE', font = ('Courier', 20, 'bold'))
+label.pack()
+label.place(x=20, y=80)
+
+size_slider = Scale(master, from_=0, to=100, length = 200, tickinterval = 20)
+size_slider.pack()
+size_slider.place(x=0, y=120)
+
+color_list = ('red', 'orange', 'yellow', 'green', 'blue', 'purple')
+shape_list_top = ('Square','circle', 'triangle', 'pentagon')
+
+def button_creator_color(color_list):
+    height = 315
+    for i in color_list:
+        height = height + 40
+        color_button = Button(master, text=i, font=('Chelsea Market', 15, 'bold'), command=calleasy)
+        color_button.pack()
+        color_button.place(x=15, y=height)
+
+def button_creator_shapes(shape_list):
+    height = 315
+    for i in color_list:
+        height = height + 40
+        color_button = Button(master, text=i, font=('Chelsea Market', 15, 'bold'), command=calleasy)
+        color_button.pack()
+        color_button.place(x=15, y=height)
+
+
+
+button_creator_color(color_list)
+
+
+
+
+mainloop()
+
