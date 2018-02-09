@@ -1,0 +1,54 @@
+from tkinter import *
+master = Tk()
+w = Canvas(master, width=600, height=600,)
+w.pack()
+
+
+def calleasy():
+    global level
+    level=0
+    master.destroy()
+def callmedium():
+    global level
+    level=1
+    master.destroy()
+def callhard():
+    global level
+    level=2
+    master.destroy()
+
+color_rectangle = w.create_rectangle(0, 350, 100, 590)
+w.itemconfigure(color_rectangle, fill='white')
+
+size_rectangle = w.create_rectangle(120, 500, 590, 590)
+w.itemconfigure(color_rectangle, fill='white')
+
+canvas_rectangle = w.create_rectangle(120, 70, 590, 480)
+w.itemconfigure(color_rectangle, fill='white')
+
+scroll_rectangle = w.create_rectangle(0, 70, 100, 330)
+w.itemconfigure(color_rectangle, fill='white')
+
+
+
+color_list = ('red', 'orange', 'yellow', 'green', 'blue', 'purple')
+
+
+
+def button_creator_color(color_list):
+    height = 315
+    for i in color_list:
+        height = height + 40
+        color_button = Button(master, text=i, font=('Chelsea Market', 15, 'bold'), command=calleasy)
+        color_button.pack()
+        color_button.place(x=15, y=height)
+
+
+
+button_creator_color(color_list)
+
+
+
+
+mainloop()
+
