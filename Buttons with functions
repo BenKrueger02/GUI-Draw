@@ -1,0 +1,123 @@
+from tkinter import *
+master = Tk()
+import time
+
+w = Canvas(master, width=600, height=600,)
+w.pack()
+x = Canvas(master, width=462, height=402,)
+x.pack()
+x.place(x=122,y=72)
+
+
+def call_square():
+    print('The shape is a square!')
+
+def call_circle():
+    print('The shape is a circle!')
+
+def call_triangle():
+    print('The shape is a triangle!')
+
+def call_pentagon():
+    print('The shape is a pentagon!')
+
+def call_pen():
+    print('The pen is enabled.')
+
+def call_eraser():
+    print('The eraser is enabled!')
+
+def call_clear():
+    print('Cleared!')
+
+def call_smile():
+    print(':-)')
+
+def call_red():
+    print('The color is red!')
+
+def call_orange():
+    print('The color is orange!')
+
+def call_yellow():
+    print('The color is yellow!')
+
+def call_green():
+    print('The color is green!')
+
+def call_blue():
+    print('The color is blue!')
+
+def call_purple():
+    print('The color is purple!')
+
+def call_done():
+    print('quitting...')
+    time.sleep(2)
+    master.destroy()
+
+
+
+
+color_rectangle = w.create_rectangle(0, 350, 100, 590)
+w.itemconfigure(color_rectangle, fill='white')
+
+shape_rectangle = w.create_rectangle(120, 500, 590, 590)
+w.itemconfigure(shape_rectangle, fill='white')
+
+canvas_rectangle = w.create_rectangle(120, 70, 590, 480)
+w.itemconfigure(canvas_rectangle, fill='white')
+
+size_rectangle = w.create_rectangle(0, 70, 100, 330)
+w.itemconfigure(size_rectangle, fill='white')
+
+
+label = Label(master, text='SIZE', font = ('Courier', 20, 'bold'))
+label.pack()
+label.place(x=20, y=80)
+
+size_slider = Scale(master, from_=0, to=100, length = 200, tickinterval = 20)
+size_slider.pack()
+size_slider.place(x=0, y=120)
+
+color_list = ['Red', 'Orange', 'Yellow', 'Green', 'Blue', 'Purple']
+
+shape_list_top = [' Square ','  Circle  ', 'Triangle', 'Pentagon']
+
+shape_list_bottom = [' Pen  ', 'Eraser', ' Clear',':-)']
+
+call_back_lst_color = {'Red':call_red, 'Orange':call_orange, 'Yellow':call_yellow, 'Green':call_green, 'Blue':call_blue, 'Purple':call_purple}
+
+call_back_lst_shape_top = {' Square ':call_square, '  Circle  ':call_circle, 'Triangle':call_triangle, 'Pentagon':call_pentagon}
+
+call_back_lst_shape_bottom = {' Pen  ':call_pen, 'Eraser':call_eraser, ' Clear':call_clear, ':-)':call_smile}
+
+def button_creator_color(color_list, callback):
+    height = 315
+    for i in color_list:
+        height = height + 40
+        color_button = Button(master, text=i, font=('Chelsea Market', 15, 'bold'), command=callback[i])
+        color_button.pack()
+        color_button.place(x=15, y=height)
+
+def button_creator_shapes(shape_list, length, height, callback):
+    for i in shape_list:
+        length = length + 100
+        shape_button = Button(master, text=i, font=('Chelsea Market', 15, 'bold'), command= callback[i])
+        shape_button.pack()
+        shape_button.place(x=length, y=height)
+
+done = Button(master, text = 'QUIT', font=('Courier', 20, 'bold'), command= call_done)
+done.pack()
+done.place(x=530,y=10)
+
+
+
+button_creator_color(color_list, call_back_lst_color)
+button_creator_shapes(shape_list_top, 50, 510, call_back_lst_shape_top)
+button_creator_shapes(shape_list_bottom, 50, 550, call_back_lst_shape_bottom)
+
+
+
+mainloop()
+
