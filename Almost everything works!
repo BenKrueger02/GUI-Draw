@@ -15,7 +15,6 @@ def callback(event):
         circle = x.create_oval(event.x, event.y, (event.x)+float(size_slider.get()), (event.y)+float(size_slider.get()), outline=color)
         x.itemconfigure(circle, fill=(color))
 
-    if shape == ''
 
 
 w = Canvas(master, width=600, height=600,)
@@ -45,8 +44,10 @@ def call_pentagon():
 
 def call_pen():
     global color
+    global shape
     print('The pen is enabled!')
     color = 'blue'
+    shape = 'circle'
 
 def call_eraser():
     global color
@@ -54,6 +55,7 @@ def call_eraser():
     color = 'white'
 
 def call_clear():
+    x.delete("all")
     print('Cleared!')
 
 def call_smile():
