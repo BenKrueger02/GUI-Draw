@@ -8,18 +8,18 @@ shape = 'circle'
 def callback(event):
 
     if shape == 'rectangle':
-        rectangle = x.create_rectangle(event.x, event.y, (event.x)+float(size_slider.get()), (event.y)+float(size_slider.get()), outline=color)
+        rectangle = x.create_rectangle((event.x)-float(size_slider.get())*.5, (event.y)-float(size_slider.get())*.5, (event.x)+float(size_slider.get())*.5, (event.y)+float(size_slider.get())*.5, outline=color)
         x.itemconfigure(rectangle, fill=(color))
 
     if shape == 'circle':
-        circle = x.create_oval(event.x, event.y, (event.x)+float(size_slider.get()), (event.y)+float(size_slider.get()), outline=color)
+        circle = x.create_oval( (event.x)-float(size_slider.get())*.5, (event.y)-float(size_slider.get())*.5, (event.x)+float(size_slider.get())*.5, (event.y)+float(size_slider.get())*.5, outline=color)
         x.itemconfigure(circle, fill=(color))
 
 
     if shape == 'triangle':
-        triangle = x.create_polygon(event.x,event.y,
-                                    event.x-float(size_slider.get())*.75, event.y+float(size_slider.get())*1.25,
-                                    event.x + float(size_slider.get())*.75, event.y+float(size_slider.get())*1.25,
+        triangle = x.create_polygon(event.x,event.y-float(size_slider.get())*.625,
+                                    event.x-float(size_slider.get())*.75, event.y+float(size_slider.get())*.625,
+                                    event.x + float(size_slider.get())*.75, event.y+float(size_slider.get())*.625,
                                     )
         x.itemconfigure(triangle, fill=(color))
 
