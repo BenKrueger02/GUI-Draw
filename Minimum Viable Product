@@ -1,0 +1,181 @@
+from tkinter import *
+master = Tk()
+import time
+
+color = 'blue'
+shape = 'circle'
+
+def callback(event):
+
+    if shape == 'rectangle':
+        rectangle = x.create_rectangle(event.x, event.y, (event.x)+float(size_slider.get()), (event.y)+float(size_slider.get()), outline=color)
+        x.itemconfigure(rectangle, fill=(color))
+
+    if shape == 'circle':
+        circle = x.create_oval(event.x, event.y, (event.x)+float(size_slider.get()), (event.y)+float(size_slider.get()), outline=color)
+        x.itemconfigure(circle, fill=(color))
+
+
+    if shape == 'triangle':
+        triangle = x.create_polygon(event.x,event.y,
+                                    event.x-float(size_slider.get()), event.y+float(size_slider.get())*2,
+                                    event.x + float(size_slider.get())*2, event.y+float(size_slider.get())*2,
+                                    )
+        x.itemconfigure(triangle, fill=(color))
+
+
+
+
+
+
+
+
+
+
+
+
+w = Canvas(master, width=600, height=600,)
+w.pack()
+x = Canvas(master, width=462, height=402,)
+x.bind("<B1-Motion>", callback)
+x.bind("<Button-1>", callback)
+x.pack()
+x.place(x=122,y=72)
+
+
+def call_square():
+    global shape
+    print('The shape is a square!')
+    shape = 'rectangle'
+
+def call_circle():
+    global shape
+    print('The shape is a circle!')
+    shape = 'circle'
+
+
+def call_triangle():
+    global shape
+    print('The shape is a triangle!')
+    shape = 'triangle'
+
+def call_pen():
+    global color
+    global shape
+    print('The pen is enabled!')
+    color = 'blue'
+    shape = 'circle'
+
+def call_eraser():
+    global color
+    print('The eraser is enabled!')
+    color = 'white'
+
+def call_clear():
+    x.delete("all")
+    print('Cleared!')
+
+def call_smile():
+    print(':-)')
+    print('This is the tkinter GUI that Ben Krueger and Aidan MacDonnel made. It is based off an old mac GUI.')
+
+def call_red():
+    global color
+    print('The color is red!')
+    color = 'red'
+
+def call_orange():
+    global color
+    print('The color is orange!')
+    color = 'orange'
+
+def call_yellow():
+    global color
+    print('The color is yellow!')
+    color = 'yellow'
+
+def call_green():
+    global color
+    print('The color is green!')
+    color = 'green'
+
+def call_blue():
+    global color
+    print('The color is blue!')
+    color = 'blue'
+
+def call_purple():
+    global color
+    print('The color is purple!')
+    color = 'purple'
+
+def call_done():
+    print('quitting...')
+    time.sleep(2)
+    master.destroy()
+
+
+
+
+color_rectangle = w.create_rectangle(0, 350, 100, 590)
+w.itemconfigure(color_rectangle, fill='white')
+
+shape_rectangle = w.create_rectangle(120, 500, 590, 590)
+w.itemconfigure(shape_rectangle, fill='white')
+
+canvas_rectangle = w.create_rectangle(120, 70, 590, 480)
+w.itemconfigure(canvas_rectangle, fill='white')
+
+size_rectangle = w.create_rectangle(0, 70, 100, 330)
+w.itemconfigure(size_rectangle, fill='white')
+
+
+label = Label(master, text='SIZE', font = ('Courier', 20, 'bold'))
+label.pack()
+label.place(x=20, y=80)
+
+size_slider = Scale(master, from_=0, to=100, length = 200, tickinterval = 20)
+size_slider.pack()
+size_slider.place(x=0, y=120)
+
+color_list = ['Red', 'Orange', 'Yellow', 'Green', 'Blue', 'Purple']
+
+shape_list_top = [' Square ','  Circle  ', 'Triangle']
+
+shape_list_bottom = [' Pen  ', 'Eraser', ' Clear',':-)']
+
+call_back_lst_color = {'Red':call_red, 'Orange':call_orange, 'Yellow':call_yellow, 'Green':call_green, 'Blue':call_blue, 'Purple':call_purple}
+
+call_back_lst_shape_top = {' Square ':call_square, '  Circle  ':call_circle, 'Triangle':call_triangle}
+
+call_back_lst_shape_bottom = {' Pen  ':call_pen, 'Eraser':call_eraser, ' Clear':call_clear, ':-)':call_smile}
+
+
+def button_creator_color(color_list, callback):
+    height = 315
+    for i in color_list:
+        height = height + 40
+        color_button = Button(master, text=i, font=('Chelsea Market', 15, 'bold'), command=callback[i])
+        color_button.pack()
+        color_button.place(x=15, y=height)
+
+def button_creator_shapes(shape_list, length, height, callback):
+    for i in shape_list:
+        length = length + 100
+        shape_button = Button(master, text=i, font=('Chelsea Market', 15, 'bold'), command= callback[i])
+        shape_button.pack()
+        shape_button.place(x=length, y=height)
+
+done = Button(master, text = 'QUIT', font=('Courier', 20, 'bold'), command= call_done)
+done.pack()
+done.place(x=530,y=10)
+
+
+
+button_creator_color(color_list, call_back_lst_color)
+button_creator_shapes(shape_list_top, 50, 510, call_back_lst_shape_top)
+button_creator_shapes(shape_list_bottom, 50, 550, call_back_lst_shape_bottom)
+
+
+
+mainloop()
