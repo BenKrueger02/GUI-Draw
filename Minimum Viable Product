@@ -18,8 +18,8 @@ def callback(event):
 
     if shape == 'triangle':
         triangle = x.create_polygon(event.x,event.y,
-                                    event.x-float(size_slider.get()), event.y+float(size_slider.get())*2,
-                                    event.x + float(size_slider.get())*2, event.y+float(size_slider.get())*2,
+                                    event.x-float(size_slider.get())*.75, event.y+float(size_slider.get())*1.25,
+                                    event.x + float(size_slider.get())*.75, event.y+float(size_slider.get())*1.25,
                                     )
         x.itemconfigure(triangle, fill=(color))
 
